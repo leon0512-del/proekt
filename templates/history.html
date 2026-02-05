@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+{% set item = None %}
+
+<nav class="navbar">
+    <div class="nav-title"> Can You Guess the Movie?</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('new_movie_game') }}">New Game</a>
+        <a href="{{ url_for('history') }}">History</a>
+
+        {% if item %}
+            <a href="{{ url_for('movie_game_details', movie_id=item.id) }}">
+                Game Details
+            </a>
+        {% else %}
+            <span class="nav-disabled">Game Details</span>
+        {% endif %}
+    </div>
+</nav>
+
+
+<div class="container">
+    <h1>Game History</h1>
+
+    {% for item in history %}
+    <div class="history-item">
+        <div class="history-image">
+            <img src="{{ url_for('static', filename='images/' + item.image_file) }}" alt="{{ item.title }}">
+        </div>
+
+        <div class="history-info">
+            <div class="history-main">
+                <span class="movie-title">{{ item.title }}</span>
+                <span class="status-badge {{ 'won' if item.finished else 'lost' }}">
+                    {{ 'Solved' if item.finished else 'Unfinished' }}
+                </span>
+            </div>
+            <div class="history-details">
+                <span>Score: {{ item.points }}  </span>
+                <span>Attempts: {{ item.attempts_count }}</span>
+            </div>
+        </div>
+
+        <a href="{{ url_for('movie_game_details', movie_id=item.id) }}" class="btn-sm">Details</a>
+    </div>
+    {% endfor %}
+</div>
+
+    <div class="footer-links">
+        <a class="btn" href="{{ url_for('index') }}">Home</a>
+    </div>
+
+
+</body>
+</html>

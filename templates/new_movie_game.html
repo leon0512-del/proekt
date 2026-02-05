@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Play</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-title"> Can You Guess the Movie?</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('new_movie_game') }}">New Game</a>
+        <a href="{{ url_for('history') }}">History</a>
+
+        {% if item %}
+            <a href="{{ url_for('movie_game_details', movie_id=item.id) }}">
+                Game Details
+            </a>
+        {% else %}
+            <span class="nav-disabled">Game Details</span>
+        {% endif %}
+    </div>
+</nav>
+
+
+<div class="container">
+    <h2>Guess the Movie</h2>
+
+    <div class="box">
+        <h3>Hints</h3>
+        <ul>
+            {% for hint in item.get_hints() %}
+                <li>{{ hint }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if not item.finished %}
+<form action="{{ url_for('play_movie', movie_id=item.id) }}" method="POST">
+    <div class="guess-control">
+        <input type="text" name="guess" placeholder="Enter movie title..." required>
+
+        <div class="button-group">
+            <button type="submit" class="btn">Guess</button>
+            <span class="guess-feedback">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <span class="{{ category }}">{{ message }}</span>
+                        {% endfor %}
+                    {% else %}
+                        Enter your guess!
+                    {% endif %}
+                {% endwith %}
+            </span>
+        </div>
+    </div>
+</form>
+
+    <div class="footer-links">
+    <form action="{{ url_for('ai_hint', movie_id=item.id) }}" method="POST" style="display: inline;">
+        <button type="submit" class="btn btn-secondary ai-loading-btn">
+            Get AI Hint
+        </button>
+    </form>
+    <span class="hint-warning">
+         Be careful using this button will deduct 10 points of your total score!!!
+    </span>
+</div>
+    {% else %}
+        <p class="success" style="text-align:center; margin-top:20px;">
+             Bravo! You won {{ item.points }} points
+        </p>
+    {% endif %}
+
+    <div class="box">
+        <h3>Your Attempts:</h3>
+        <ul>
+            {% for attempt in item.get_attempts() %}
+                <li>{{ attempt }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="footer-links">
+        <a class="btn" href="{{ url_for('history') }}">View History</a>
+        <a class="btn" href="{{ url_for ('index') }}">Home</a>
+        <a class="btn" href="{{ url_for('movie_game_details', movie_id=item.id) }}">Game Details</a>
+
+    </div>
+</div>
+
+</body>
+</html>

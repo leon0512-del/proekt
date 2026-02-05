@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess the Movie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="home-bg">
+{% set item = None %}
+
+<nav class="navbar">
+    <div class="nav-title"> Can You Guess the Movie?</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('new_movie_game') }}">New Game</a>
+        <a href="{{ url_for('history') }}">History</a>
+
+        {% if item %}
+            <a href="{{ url_for('movie_game_details', movie_id=item.id) }}">
+                Game Details
+            </a>
+        {% else %}
+            <span class="nav-disabled">Game Details</span>
+        {% endif %}
+    </div>
+</nav>
+
+
+<div class="container">
+    <h1>Guess the Movie</h1>
+
+    <p style="text-align:center; margin-bottom:20px;">
+        Guess the movie based on hints.Each wrong attempt costs points!
+        <br>
+        Have Fun!
+    </p>
+
+    <div class="footer-links">
+        <a class="btn" href="{{ url_for('new_movie_game') }}">Start Game</a>
+
+    </div>
+</div>
+<div class="image-grid">
+    <div class="image-card">
+        <img src="{{ url_for('static', filename='images/pic1.jpg') }}" alt="Movie Poster 1">
+        <div class="image-caption">Classic Movies</div>
+    </div>
+    <div class="image-card">
+        <img src="{{ url_for('static', filename='images/pic2.jpg') }}" alt="Movie Poster 2">
+        <div class="image-caption">New Releases</div>
+    </div>
+</div>
+</body>
+</html>

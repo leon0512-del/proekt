@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Game Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-title"> Can You Guess the Movie?</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('new_movie_game') }}">New Game</a>
+        <a href="{{ url_for('history') }}">History</a>
+        <a href="{{ url_for('movie_game_details', movie_id=movie.id) }}">Game Details</a>
+    </div>
+</nav>
+
+<div class="container">
+  <h1>{{ movie.title }}</h1>
+
+  <p><strong>Year: </strong> &nbsp; {{ movie.year }}</p>
+  <p><strong>Points: </strong> &nbsp; {{ movie.points }}</p>
+  <p><strong>Status: </strong>
+    {% if movie.finished %}&nbsp;Finished{% else %}&nbsp; In progress{% endif %}
+  </p>
+
+  <div class="box">
+      <h3>Attempts:</h3>
+      <ul>
+        {% for attempt in movie.attempts.split('|') if attempt %}
+          <li>{{ attempt }}</li>
+        {% else %}
+          <li>No attempts yet.</li>
+        {% endfor %}
+      </ul>
+  </div>
+
+  <div class="box">
+      <h3>Hints used:</h3>
+      <ul>
+        {% for hint in movie.hints.split('|') if hint %}
+          <li>{{ hint }}</li>
+        {% endfor %}
+      </ul>
+  </div>
+
+  <div class="details-poster-container">
+      <h3>Movie Poster</h3>
+      <div class="details-poster">
+          <img src="{{ url_for('static', filename='images/' + movie.image_file) }}" alt="{{ movie.title }}">
+      </div>
+  </div>
+
+  <div style="text-align: center;">
+      <a class="btn" href="{{ url_for('play_movie', movie_id=movie.id) }}">
+        {% if movie.finished %}View Game{% else %}Continue Game{% endif %}
+      </a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,360 @@
+/* 1. Root  */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+}
+
+/* 2.  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: white;
+    padding: 20px;
+}
+
+/* 3. Navigation */
+.navbar {
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    color: #fff;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-radius: 15px;
+}
+
+.nav-links a {
+    color: #fff;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+/* 4. Container */
+.container {
+    max-width: 850px;
+    margin: 40px auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 40px; /* Increased padding for space */
+    border-radius: 20px;
+}
+
+/* 5.  */
+h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Spacing */
+.container p {
+    margin-bottom: 25px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+/* 6. Content Boxes (Hints & Attempts)  */
+.box, .container ul {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0 40px 0;
+    border: 1px solid var(--glass-border);
+    list-style: none;
+}
+
+.container ul li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.container ul li:last-child {
+    border-bottom: none;
+}
+
+/*   Glass Buttons */
+.btn {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/*  details */
+.container > .btn {
+    display: table;
+    margin: 40px auto 0 auto;
+}
+
+/*  History Items */
+
+/* Layout for the history row */
+.history-item {
+    display: flex; /* This puts image and info side-by-side */
+    align-items: center;
+    gap: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+
+.history-image img {
+    width: 70px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/*  */
+.history-info {
+    flex-grow: 1; /*  */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.movie-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/*  */
+.status-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.status-badge.won { background: rgba(0, 255, 0, 0.2); color: #94ff94; }
+.status-badge.lost { background: rgba(255, 0, 0, 0.2); color: #ff9494; }
+
+.history-details {
+    display: flex;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    gap:20px;
+    margin-top: 5px;
+}
+/* footer */
+
+
+
+.footer-links {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-links .btn {
+    min-width: 150px;
+} /* <--- Added this missing brace */
+
+.hint-warning {
+    display: block !important;
+    margin-top: 20px !important; /* Pushes it down */
+    font-size: 16px !important;
+    color: #ffb3b3 !important; /* Soft red to match theme */
+    text-align: right; /* Aligns it nicely if next to a button */
+    flex: 1;
+    padding-left: 20px;
+}
+
+/* --- 8. Guessing Form Layout --- */
+
+.guess-control {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
+    margin: 30px 0 !important;
+    width: 100%;
+}
+
+.button-group {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 30px !important;
+    min-height: 50px;
+}
+
+form {
+    display: block !important;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.guess-feedback {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.guess-feedback .error {
+    color: #ff9494;
+    font-weight: bold;
+}
+
+.guess-feedback .success {
+    color: #94ff94;
+    font-weight: bold;
+}
+/* Container for the images */
+.image-grid {
+    max-width: 850px;
+    margin: 30px auto; /* Centered with space above */
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Individual Image Cards */
+.image-card {
+    flex: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.image-card:hover {
+    transform: translateY(-5px);
+}
+
+.image-card img {
+    width: 100%;
+    height: 200px; /* Adjust height as needed */
+    object-fit: cover; /* Prevents stretching */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.image-caption {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    padding-bottom: 5px;
+}
+.btn-sm {
+    padding: 8px 15px;
+    font-size: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--glass-border);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+/* Za poster*/
+.details-poster-container {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+}
+
+.details-poster-container h3 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.details-poster img {
+    max-width: 250px;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.details-poster img:hover {
+    transform: scale(1.05);
+}
