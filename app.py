@@ -124,20 +124,24 @@ def history():
     return render_template("history.html", history=movies)
 
 
-@app.route("/game/movie/<int:movie_id>/ai_hint",methods=["GET","POST"])
+@app.route("/game/movie/<int:movie_id>/ai_hint", methods=["GET", "POST"])
 def ai_hint(movie_id):
     movie = session.get(Movies, movie_id)
+
+    if not movie:
+        flash("Game not found!", "error")
+        return redirect(url_for('index'))
 
     try:
 
         new_hint = generate_hint("movie", movie.get_hints())
         movie.add_hints(new_hint)
-        movie.points = max(0, movie.points - 10)  #cena za koristeje na ai
+        movie.points = max(0, movie.points - 10)
         session.commit()
     except Exception as e:
-
         print(f"AI Error: {e}")
-        movie.add_hints("AI Service currently unavailable (Check API Key)")
+
+        movie.add_hints("AI Service is busy. Try again in a moment.")
         session.commit()
 
     return redirect(url_for("play_movie", movie_id=movie_id))
