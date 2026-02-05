@@ -1,9 +1,10 @@
+import os
 import time
 from google import genai
 from google.genai import types
+import os
 
-
-MY_API_KEY = ""
+MY_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
 client = genai.Client(api_key=MY_API_KEY)
 

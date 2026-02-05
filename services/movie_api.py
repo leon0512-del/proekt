@@ -1,6 +1,8 @@
+import os
+
 import requests
 
-OMDB_API_KEY = ""
+OMDB_API_KEY = os.getenv("OMDB_API_KEY", "")
 
 def get_movie_by_title(title):
     url = f"http://www.omdbapi.com/?t={title}&apikey={OMDB_API_KEY}"
