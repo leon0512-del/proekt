@@ -14,7 +14,7 @@ def generate_hint(game_type, existing_hints):
         try:
 
             response = client.models.generate_content(
-                model="gemini-3-flash",
+                model="gemini-3-flash-preview",
                 contents=prompt
             )
             return response.text.strip()
