@@ -43,9 +43,9 @@
                 </span>
             </div>
             <div class="history-details">
-                <span>Score: {{ item.points }}  </span>
-                <span>Attempts: {{ item.attempts_count }}</span>
-            </div>
+    <span>Score: {{ item.points }}</span>
+    <span>Attempts: {{ item.attempts.split('|') | length if item.attempts else 0 }}</span>
+</div>
         </div>
 
         <a href="{{ url_for('movie_game_details', movie_id=item.id) }}" class="btn-sm">Details</a>
